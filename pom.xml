@@ -1,0 +1,75 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>space.anna</groupId>
+  <artifactId>jmeter-testproject</artifactId>
+  <packaging>jar</packaging>
+  <version>0.1.0</version>
+  <name>jmeter-testproject</name>
+  <description>Apache.JMeter test for loadtest</description>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+	<test.run_id>R006</test.run_id>
+  </properties>
+  <build>
+	<plugins>
+	  <plugin>
+		<groupId>com.lazerycode.jmeter</groupId>
+		<artifactId>jmeter-maven-plugin</artifactId>
+		<version>3.1.0</version>
+		<executions>
+			<!-- Generate JMeter configuration -->
+			<execution>
+				<id>configuration</id>
+				<goals>
+					<goal>configure</goal>
+				</goals>
+			</execution>
+			<!-- Run JMeter tests -->
+			<execution>
+				<id>jmeter-tests</id>
+				<goals>
+					<goal>jmeter</goal>
+				</goals>
+			</execution>
+			<!-- Fail build on errors in test  -->
+			<execution>
+				<id>jmeter-check-results</id>
+				<goals>
+					<goal>results</goal>
+				</goals>
+			</execution>
+		</executions>
+		<configuration>
+			<propertiesUser> 
+                    <run_id>${test.run_id}</run_id>
+                </propertiesUser> 
+			<jmeterExtensions>
+				<artifact>kg.apc:jmeter-plugins-casutg:2.9</artifact>
+				<artifact>cloud.testload:jmeter.pack-listener:2.01</artifact>
+			</jmeterExtensions>
+			<!-- The plugin uses some broken dependencies 
+				 An alternative is to set this to true and use excludedArtifacts, see below
+			-->
+			<testPlanLibraries>
+         <!-- JMeter Plugins Common Classes: Various utility classes to ease development of plugins
+			http://repo.maven.apache.org/maven2/kg/apc/jmeter-plugins-cmn-jmeter/
+		-->
+				<artifact>kg.apc:jmeter-plugins-cmn-jmeter:0.6</artifact>
+			</testPlanLibraries>
+			<downloadExtensionDependencies>false</downloadExtensionDependencies>
+		</configuration>
+	  </plugin>
+	</plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
