@@ -14,7 +14,7 @@ services:
     ports:
       - "8123:8123"
       
-  testingservise:
+  testingservice:
     image: kennethreitz/httpbin
     ports:
       - "80:80"
