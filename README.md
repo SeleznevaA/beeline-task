@@ -19,6 +19,10 @@ Jmeter load test
     
 3. Результаты теста отображаются в графане, запущенной на `localhost:3000`
 
+login: admin
+passwotd: admin
+
+
 dashboard: _JMeter Results from ClickHouse(Rus)_
 
 ![grafana](images/grafana-example.png)
